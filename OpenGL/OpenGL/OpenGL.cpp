@@ -273,6 +273,14 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glUseProgram(programID);
 
+		//인풋
+		// Compute the MVP matrix from keyboard and mouse input
+		computeMatricesFromInputs();
+		glm::mat4 ProjectionMatrix = getProjectionMatrix();
+		glm::mat4 ViewMatrix = getViewMatrix();
+		glm::mat4 ModelMatrix = glm::mat4(1.0);
+		glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
+
 		// 그릴 곳
 		// 현재 바인딩된 쉐이더에게 변환한 메트릭스를 보냅시다. 방금 얻은 참조로요. 
 		// 이건 각각의 모델마다 다른 MVP 행렬을 가지고 있을 것이니, 메인 루프에 해줍시다. (VP는 같을지 몰라도, M은 다를거에요.)
